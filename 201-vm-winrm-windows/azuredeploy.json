@@ -16,6 +16,7 @@
     },
     "dnsLabelPrefix": {
       "type": "string",
+      "defaultValue": "ocsdns",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
@@ -34,35 +35,35 @@
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "MyVM",
+      "defaultValue": "OCSTestVM",
       "metadata": {
         "description": "The name for the VM."
       }
     },
     "nicName": {
       "type": "string",
-      "defaultValue": "myVMNic",
+      "defaultValue": "OCSNIC",
       "metadata": {
         "description": "The name for the VM's NIC."
       }
     },
     "virtualNetworkName": {
       "type": "string",
-      "defaultValue": "MyVNET",
+      "defaultValue": "OCSVNET",
       "metadata": {
         "description": "The name for the VM's VNET."
       }
     },
     "publicIPAddressName": {
       "type": "string",
-      "defaultValue": "myPublicIP",
+      "defaultValue": "OCSPIP",
       "metadata": {
         "description": "The name for the VM's public IP."
       }
     },
     "subnetName": {
       "type": "string",
-      "defaultValue": "Subnet",
+      "defaultValue": "OCSSubnet",
       "metadata": {
         "description": "The name for the VM's Subnet."
       }
@@ -85,7 +86,7 @@
     "publicIPAddressName": "[parameters('publicIPAddressName')]",
     "publicIPAddressType": "Dynamic",
     "vmName": "[parameters('vmName')]",
-    "vmSize": "Standard_A2",
+    "vmSize": "Standard_A1_v2",
     "virtualNetworkName": "[parameters('virtualNetworkName')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "apiVersion": "2015-06-15",
@@ -234,8 +235,8 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/ConfigureWinRM.ps1",
-                "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/makecert.exe"
+                "https://raw.githubusercontent.com/garrickgunnsf/azure-quickstart-templates/master/201-vm-winrm-windows/ConfigureWinRM.ps1",
+                "https://raw.githubusercontent.com/garrickgunnsf/azure-quickstart-templates/master/201-vm-winrm-windows/makecert.exe"
               ],
               "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ConfigureWinRM.ps1 ',variables('hostDNSNameScriptArgument'))]"
             }
